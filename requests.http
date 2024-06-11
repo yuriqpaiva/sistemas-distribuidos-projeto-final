@@ -1,0 +1,27 @@
+@baseUrl = http://localhost:3000/api
+
+### Registra um novo usuário
+POST {{baseUrl}}/users
+Content-Type: application/json
+{
+  "name": "Rest User",
+  "email": "user@user.com",
+  "password": "12345678"
+}
+
+### Autentica um usuário
+# @name auth
+POST {{baseUrl}}/auth
+Content-Type: application/json
+{
+  "email": "user@user.com",
+  "password": "12345678"
+}
+###
+
+@authToken = {{auth.response.body.token}}
+
+### Buscar a tabela de logs
+GET {{baseUrl}}/logs
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
