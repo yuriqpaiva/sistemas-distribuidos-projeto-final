@@ -50,12 +50,28 @@ export function RegisterForm({ className }: { className?: string }) {
     },
   });
 
-  function onSubmit(data: Schema) {
-    router.push("/acessar");
-    toast.success("Conta criada com sucesso", {
-      description: "Agora você já pode acessar sua conta",
-      position: "top-center",
-    });
+  async function onSubmit(data: Schema) {
+    try {
+      await fetch("/api/users", {
+        method: "POST",
+        body: JSON.stringify({
+          email: data.email,
+          username: data.username,
+          password: data.password,
+        }),
+      });
+
+      router.push("/acessar");
+      toast.success("Conta criada com sucesso", {
+        description: "Agora você já pode acessar sua conta",
+        position: "top-center",
+      });
+    } catch {
+      toast.error("Erro ao criar conta", {
+        description: "Tente novamente mais tarde",
+        position: "top-center",
+      });
+    }
   }
 
   return (
