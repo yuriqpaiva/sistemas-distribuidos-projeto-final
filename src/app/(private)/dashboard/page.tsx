@@ -49,7 +49,7 @@ export default async function Page() {
           {/* <Users className="h-6 w-6 mr-3" strokeWidth={2.5} /> */}
           {/* Últimos contatos adicionados */}
           <Scroll className="h-6 w-6 mr-3" strokeWidth={2.5} />
-          Últimos logs
+          Últimos logs registrados na API
         </h2>
         <div className="border rounded-md p-5">
           {/* <RecentAddedUsersTable /> */}
