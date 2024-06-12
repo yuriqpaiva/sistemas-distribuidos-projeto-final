@@ -45,6 +45,10 @@ export function LoginForm({ className }: { className?: string }) {
         body: JSON.stringify(data),
       });
 
+      if (!response.ok) {
+        throw new Error("Erro ao entrar na sua conta");
+      }
+
       const { token } = await response.json();
 
       setCookie("token", token);
@@ -57,7 +61,7 @@ export function LoginForm({ className }: { className?: string }) {
     } catch {
       toast.error("Erro ao entrar na sua conta", {
         description: "Verifique suas credenciais e tente novamente.",
-        position: "bottom-right",
+        position: "top-center",
       });
     }
   }
